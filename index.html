@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ฐานข้อมูลชาวบ้าน</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>ฐานข้อมูลชาวบ้าน (Sort)</h1>
+    </header>
+
+    <main class="container">
+
+        <aside class="sidebar">
+            
+            <section class="control-box">
+                <h2>ควบคุม</h2>
+                <p>1. โหลดไฟล์ข้อมูล (data.json)</p>
+                <input type="file" id="fileInput" accept=".json">
+            </section>
+
+            <section class="control-box">
+                <h2>กรองข้อมูล (เลือกได้หลายข้อ)</h2>
+                <p id="filterHelpText">กรุณาโหลดไฟล์ข้อมูลก่อน...</p>
+                <div id="perkCheckboxContainer"></div>
+                <button id="filterButton" disabled>กรองข้อมูล</button>
+                <button id="resetButton" disabled>ล้างตัวกรอง</button>
+            </section>
+            
+            <section class="control-box">
+                <h2>กรอกข้อมูล</h2> <p>หรือไปหน้าสร้างไฟล์ Data</p>
+                <button onclick="window.location.href='data_entry.html'" style="width: 100%;">
+                    ไปหน้าสร้างไฟล์ Data ➡️
+                </button>
+            </section>
+        </aside>
+
+        <section class="content">
+            
+            <div class="results-header">
+                <h2>รายชื่อชาวบ้าน (<span id="villagerCount">0</span> คน)</h2>
+            </div>
+            <div id="villagerList">
+                </div>
+
+            <div class="results-header">
+                <h2>ฐานข้อมูล Perk</h2>
+            </div>
+            <div id="perkDictionary">
+                </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

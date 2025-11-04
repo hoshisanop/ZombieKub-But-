@@ -1,0 +1,219 @@
+body {
+    font-family: 'Tahoma', 'Saraban', sans-serif;
+    background-color: #f0f2f5; /* เปลี่ยนสีพื้นหลังไม่ให้ขาวโล้น */
+    color: #333;
+    margin: 0;
+}
+
+header {
+    background-color: #1a237e; /* สีน้ำเงินเข้ม */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    /* [เพิ่ม 4 บรรทัดนี้] เพื่อให้ปุ่มย้อนกลับจัดตำแหน่งได้ */
+    display: flex;
+    justify-content: center; /* ให้ H1 อยู่ตรงกลาง */
+    align-items: center;
+    position: relative; /* เพื่อให้ปุ่มย้อนกลับลอยเทียบกับ Header ได้ */
+}
+
+/* --- Layout หลัก (Sidebar + Content) --- */
+.container {
+    display: flex;
+    flex-wrap: wrap; /* ให้ responsive */
+    max-width: 1400px;
+    margin: 20px auto;
+    gap: 20px;
+}
+
+.sidebar {
+    flex: 1; /* ความกว้าง 1 ส่วน */
+    min-width: 300px; /* กว้างอย่างน้อย 300px */
+}
+
+.content {
+    flex: 3; /* ความกว้าง 3 ส่วน */
+    min-width: 400px;
+}
+
+.control-box {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.control-box h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #1a237e;
+    padding-bottom: 10px;
+    color: #1a237e;
+}
+
+input[type="file"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+button {
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #1a237e;
+    color: white;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+button:hover {
+    background-color: #000051;
+}
+button#resetButton {
+    background-color: #6c757d;
+}
+button#resetButton:hover {
+    background-color: #5a6268;
+}
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#perkCheckboxContainer {
+    max-height: 400px; 
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background: #fdfdfd;
+    border-radius: 5px;
+}
+
+#perkCheckboxContainer label {
+    display: block; 
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+#perkCheckboxContainer label:hover {
+    background-color: #f0f2f5;
+}
+
+#perkCheckboxContainer input {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.results-header {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-top: 20px;
+    border-bottom: 1px solid #ddd;
+}
+.results-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+#villagerList, #villagerPreviewList {
+    display: grid;
+    
+    grid-template-columns: repeat(auto-fit, 300px); 
+    
+    gap: 15px;
+    
+    padding: 20px; 
+    
+}
+
+.villager-card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+}
+.villager-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.villager-card h3 {
+    margin-top: 0;
+    color: #1a237e;
+    font-size: 1.4em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.villager-card p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+.villager-card strong {
+    color: #555;
+}
+
+.villager-card ul {
+    margin: 5px 0 10px 0;
+    padding-left: 20px;
+}
+.villager-card li {
+    margin-bottom: 4px;
+}
+
+.wins { color: #28a745; }
+.loses { color: #dc3545; }
+
+#perkDictionary {
+    background: white;
+    padding: 20px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    overflow-x: auto; /* เผื่อตารางล้นจอ */
+}
+
+.perk-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.perk-table th, .perk-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.perk-table th {
+    background-color: #f9f9f9;
+    color: #333;
+    font-weight: bold;
+}
+
+.perk-table tr:nth-child(even) {
+    background-color: #fdfdfd;
+}
+
+.header-back-link {
+    position: absolute; /* ลอยเทียบกับ Header */
+    left: 20px; /* ชิดซ้าย 20px */
+    top: 50%; /* อยู่กึ่งกลางแนวตั้ง */
+    transform: translateY(-50%); /* เทคนิคจัดกึ่งกลาง */
+    
+    color: #ffffff; /* <<< นี่คือตัวแก้ปัญหา "โดนกลืน" ครับ */
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1); /* โปร่งแสงเล็กน้อย */
+    transition: background-color 0.2s;
+}
+.header-back-link:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* สว่างขึ้นเมื่อ hover */
+}

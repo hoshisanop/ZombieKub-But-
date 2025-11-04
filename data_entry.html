@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เครื่องมือกรอกข้อมูลชาวบ้าน</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+    <a href="index.html" class="header-back-link">⬅️ กลับไปหน้าหลัก (Sort)</a>
+
+    <h1>เครื่องมือกรอกข้อมูลชาวบ้าน</h1>
+</header>
+
+    <main class="container">
+
+        <aside class="sidebar">
+            <section class="control-box">
+                <h2>1. วางข้อมูลชาวบ้าน</h2>
+                <p>วางข้อความ (รูปแบบCTRL+C,V) ลงในช่องนี้</p>
+                <textarea id="textInput" rows="20" placeholder="ชื่อ
+ข้อมูล
+สถานที่พบเจอ
+..."></textarea>
+                
+                <button id="addVillagerButton">ยืนยัน & เพิ่มชาวบ้าน</button>
+            </section>
+
+            <section class="control-box">
+    <h2>2. จัดการข้อมูล</h2>
+    
+    <p><strong>เซฟชั่วคราว:</strong> เซฟข้อมูลลงในบราวเซอร์ (ปิดแล้วเปิดใหม่ข้อมูลไม่หาย)</p>
+    <button id="saveToLocalButton">เซฟลงบราวเซอร์</button>
+    <button id="clearAllButton">ล้างข้อมูลที่เซฟไว้ทั้งหมด (ยืนยัน)</button>
+    
+    <hr style="margin: 20px 0;"> <p><strong>ส่งออกไฟล์:</strong> เมื่อเสร็จแล้ว กดปุ่มนี้เพื่อดาวน์โหลดไฟล์ .json</p>
+    <button id="exportButton">Export ข้อมูลทั้งหมดเป็น data.json</button>
+</section>
+        </aside>
+
+        <section class="content">
+            <div class="results-header">
+                <h2>พรีวิวชาวบ้านที่เพิ่มแล้ว (<span id="villagerCount">0</span> คน)</h2>
+            </div>
+            <div id="villagerPreviewList"></div>
+        </section>
+
+    </main>
+
+    <script src="entry_script.js"></script>
+
+</body>
+</html>
