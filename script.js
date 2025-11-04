@@ -13,8 +13,8 @@ const perkDatabase = [
     { name: 'ผู้ใช้อาวุธระยะไกล', desc: '+10% crit ถ้าแต้มนำ >3', chance: '100%' }
 ];
 
-let allVillagers = []; // ที่เก็บข้อมูลชาวบ้านทั้งหมดจากไฟล์
-let allPerks = new Set(); // เก็บ Perk ที่ไม่ซ้ำกันจากไฟล์
+let allVillagers = [];
+let allPerks = new Set();
 
 const fileInput = document.getElementById('fileInput');
 const perkCheckboxContainer = document.getElementById('perkCheckboxContainer');
@@ -43,8 +43,8 @@ fileInput.addEventListener('change', (event) => {
             resetButton.disabled = false;
             filterHelpText.style.display = 'none';
 
-            populatePerkFilter(); // สร้าง Checkbox
-            displayVillagers(allVillagers); // แสดงชาวบ้านทั้งหมด
+            populatePerkFilter();
+            displayVillagers(allVillagers);
         } catch (error) {
             alert('ไฟล์ JSON ไม่ถูกต้อง: ' + error.message);
         }
@@ -54,7 +54,7 @@ fileInput.addEventListener('change', (event) => {
 
 function populatePerkFilter() {
     allPerks.clear();
-    perkCheckboxContainer.innerHTML = ''; // ล้างของเก่า
+    perkCheckboxContainer.innerHTML = '';
 
     allVillagers.forEach(villager => {
         villager.perks.forEach(perk => {
@@ -154,4 +154,5 @@ function displayPerkDictionary() {
 
     tableHTML += '</table>';
     perkDictionaryDiv.innerHTML = tableHTML;
+
 }
