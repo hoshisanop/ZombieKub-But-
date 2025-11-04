@@ -37,7 +37,7 @@ function handleAddVillager() {
     try {
         const newVillager = parseVillagerText(text);
         newVillager._rawText = text; 
-        currentVillagersList.unshift(newVillager); // .unshift() คือเพิ่มด้านหน้า (ใหม่สุด)
+        currentVillagersList.unshift(newVillager);
         
         displayPreview();
         saveToLocalStorage();
@@ -54,13 +54,12 @@ function handleExport() {
         alert('ยังไม่มีข้อมูลชาวบ้านให้ Export');
         return;
     }
-    // สร้างสำเนาของ List ก่อน Export
     const exportList = [...currentVillagersList];
 
     exportList.reverse(); 
 
     const jsonString = JSON.stringify(exportList, (key, value) => {
-        if (key === '_rawText') { // ไม่ Export ข้อความดิบ
+        if (key === '_rawText') {
             return undefined;
         }
         return value;
@@ -225,4 +224,5 @@ function handleClearAll() {
         displayPreview(); 
         alert('ล้างข้อมูลทั้งหมดเรียบร้อย');
     }
+
 }
