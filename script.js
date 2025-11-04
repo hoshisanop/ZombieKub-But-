@@ -101,7 +101,7 @@ resetButton.addEventListener('click', () => {
 });
 
 function displayVillagers(villagers) {
-    villagerListDiv.innerHTML = ''; // ล้างข้อมูลเก่า
+    villagerListDiv.innerHTML = '';
     villagerCountSpan.textContent = villagers.length;
 
     if (villagers.length === 0) {
@@ -156,3 +156,4 @@ function displayPerkDictionary() {
     perkDictionaryDiv.innerHTML = tableHTML;
 
 }
+
