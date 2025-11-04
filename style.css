@@ -1,40 +1,40 @@
 body {
     font-family: 'Tahoma', 'Saraban', sans-serif;
-    background-color: #f0f2f5; /* เปลี่ยนสีพื้นหลังไม่ให้ขาวโล้น */
+    background-color: #f0f2f5;
     color: #333;
     margin: 0;
+    padding-bottom: 120px;
 }
 
 header {
-    background-color: #1a237e; /* สีน้ำเงินเข้ม */
+    background-color: #1a237e;
     color: white;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 
-    /* [เพิ่ม 4 บรรทัดนี้] เพื่อให้ปุ่มย้อนกลับจัดตำแหน่งได้ */
+  
     display: flex;
-    justify-content: center; /* ให้ H1 อยู่ตรงกลาง */
+    justify-content: center; 
     align-items: center;
-    position: relative; /* เพื่อให้ปุ่มย้อนกลับลอยเทียบกับ Header ได้ */
+    position: relative; 
 }
 
-/* --- Layout หลัก (Sidebar + Content) --- */
 .container {
     display: flex;
-    flex-wrap: wrap; /* ให้ responsive */
+    flex-wrap: wrap;
     max-width: 1400px;
     margin: 20px auto;
     gap: 20px;
 }
 
 .sidebar {
-    flex: 1; /* ความกว้าง 1 ส่วน */
-    min-width: 300px; /* กว้างอย่างน้อย 300px */
+    flex: 1;
+    min-width: 300px;
 }
 
 .content {
-    flex: 3; /* ความกว้าง 3 ส่วน */
+    flex: 3;
     min-width: 400px;
 }
 
@@ -260,3 +260,4 @@ button:disabled {
 .support-widget .support-link a:hover {
     text-decoration: underline;
 }
+
