@@ -3,7 +3,8 @@ body {
     background-color: #f0f2f5;
     color: #333;
     margin: 0;
-    padding-bottom: 120px;
+    /* [เพิ่มกลับเข้ามา] กัน Widget ทับปุ่ม */
+    padding-bottom: 120px; 
 }
 
 header {
@@ -12,12 +13,10 @@ header {
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-
-  
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
-    position: relative; 
+    position: relative;
 }
 
 .container {
@@ -83,6 +82,7 @@ button:disabled {
     cursor: not-allowed;
 }
 
+/* --- พื้นที่ตัวกรอง Perk (Checkboxes) --- */
 #perkCheckboxContainer {
     max-height: 400px; 
     overflow-y: auto;
@@ -122,13 +122,9 @@ button:disabled {
 
 #villagerList, #villagerPreviewList {
     display: grid;
-    
     grid-template-columns: repeat(auto-fit, 300px); 
-    
     gap: 15px;
-    
     padding: 20px; 
-    
 }
 
 .villager-card {
@@ -175,7 +171,7 @@ button:disabled {
     padding: 20px;
     border-radius: 0 0 8px 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    overflow-x: auto; /* เผื่อตารางล้นจอ */
+    overflow-x: auto;
 }
 
 .perk-table {
@@ -206,7 +202,8 @@ button:disabled {
     top: 50%;
     transform: translateY(-50%);
     
-   
+    color: #ffffff; 
+    
     text-decoration: none;
     font-size: 15px;
     padding: 10px 15px;
@@ -217,47 +214,47 @@ button:disabled {
 .header-back-link:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
+
 .support-widget {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    bottom: 15px;
+    left: 15px;
     z-index: 1000;
-
     display: flex;
     align-items: center;
-    gap: 12px;
-
-    background-color: #ffffff; /* พื้นหลังสีขาว */
-    padding: 10px 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    gap: 10px; 
+    background-color: #ffffff;
+    padding: 8px 12px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     border: 1px solid #ddd;
 }
 
 .support-widget img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%; 
-    object-fit: cover; 
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
     border: 2px solid #1a237e;
 }
 
 .support-widget .widget-text p {
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.3;
 }
 
 .support-widget .name {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px; 
     color: #1a237e;
+} 
 
 .support-widget .support-link a {
-    font-size: 14px;
-    color: #007BFF;
+    font-size: 12px; 
+    color: #1a237e;
+    font-weight: bold;
     text-decoration: none;
 }
 .support-widget .support-link a:hover {
     text-decoration: underline;
 }
-
