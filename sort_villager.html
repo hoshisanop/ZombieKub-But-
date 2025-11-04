@@ -31,9 +31,7 @@
                 <h2>กรองข้อมูล (เลือกได้หลายข้อ)</h2>
                 <p id="filterHelpText">กรุณาโหลดไฟล์ข้อมูลก่อน...</p>
                 <div id="perkCheckboxContainer"></div>
-                <button id="filterButton" disabled>กรองข้อมูล</button>
-                <button id="resetButton" disabled>ล้างตัวกรอง</button>
-            </section>
+                </section>
 
             <section class="control-box">
                 <h2>กรองตามสถานที่ (เลือกได้หลายข้อ)</h2>
@@ -42,42 +40,18 @@
             </section>
             
             <section class="control-box">
+                <h2>ยืนยันการกรอง</h2>
+                <button id="filterButton" disabled style="width: 100%;">
+                    กรองข้อมูล (Perks & สถานที่)
+                </button>
+                <button id="resetButton" disabled style="width: 100%; background-color: #6c757d; margin-top: 10px;">
+                    ล้างตัวกรองทั้งหมด
+                </button>
+            </section>
+            
+            <section class="control-box">
                 <h2>กรอกข้อมูล</h2> <p>หรือไปหน้าสร้างไฟล์ Data</p>
                 <button onclick="window.location.href='data_entry.html'" style="width: 100%;">
                     ไปหน้าสร้างไฟล์ Data ➡️
                 </button>
             </section>
-            
-        </aside>
-
-        <section class="content">
-            
-            <div class="results-header">
-                <h2>รายชื่อชาวบ้าน (<span id="villagerCount">0</span> คน)</h2>
-            </div>
-            <div id="villagerList">
-                </div>
-
-            <div class="results-header">
-                <h2>ฐานข้อมูล Perk</h2>
-            </div>
-            <div id="perkDictionary">
-                </div>
-
-        </section> </main>
-
-    <script src="script.js"></script>
-
-    <div class="support-widget">
-        <img src="myicon.gif" alt="Site Icon">
-        <div class="widget-text">
-            <p class="name">by hoshisanop</p>
-            <p class="support-link">
-                <a href="https://tipme.in.th/0160ec10ee1ef96ee93cddcd" target="_blank" rel="noopener noreferrer">
-                    สนับสนุนนักพัฒนาตัวน้อยได้ที่นี่ ٩(•̤̀ᵕ•̤́๑)
-                </a>
-            </p>
-        </div>
-    </div>
-</body>
-</html>
