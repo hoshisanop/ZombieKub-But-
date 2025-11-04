@@ -3,6 +3,7 @@ body {
     background-color: #f0f2f5;
     color: #333;
     margin: 0;
+    /* [เพิ่มกลับเข้ามา] กัน Widget ทับปุ่ม */
     padding-bottom: 120px; 
 }
 
@@ -81,6 +82,7 @@ button:disabled {
     cursor: not-allowed;
 }
 
+/* --- พื้นที่ตัวกรอง Perk (Checkboxes) --- */
 #perkCheckboxContainer {
     max-height: 400px; 
     overflow-y: auto;
@@ -256,4 +258,3 @@ button:disabled {
 .support-widget .support-link a:hover {
     text-decoration: underline;
 }
-
