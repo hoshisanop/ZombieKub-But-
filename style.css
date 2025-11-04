@@ -81,9 +81,9 @@ button:disabled {
     cursor: not-allowed;
 }
 
-#perkCheckboxContainer, #mapCheckboxContainer {
-    max-height: 400px; 
-    overflow-y: auto;
+#perkCheckboxContainer {
+    max-height: 250px;
+    overflow-y: auto;
     border: 1px solid #ddd;
     padding: 10px;
     background: #fdfdfd;
@@ -95,13 +95,46 @@ button:disabled {
     margin-bottom: 8px;
     cursor: pointer;
     font-size: 15px;
+    padding: 2px 5px;
+    border-radius: 3px;
 }
 #perkCheckboxContainer label:hover {
     background-color: #f0f2f5;
 }
-
 #perkCheckboxContainer input {
     margin-right: 8px;
+    vertical-align: middle;
+}
+
+#mapCheckboxContainer {
+    max-height: 250px; 
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background: #fdfdfd;
+    border-radius: 5px;
+
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 5px; 
+}
+
+#mapCheckboxContainer label {
+    display: block; 
+    font-size: 14px; 
+    cursor: pointer;
+    padding: 3px 5px;
+    border-radius: 3px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+#mapCheckboxContainer label:hover {
+    background-color: #f0f2f5;
+}
+#mapCheckboxContainer input {
+    margin-right: 6px;
     vertical-align: middle;
 }
 
@@ -199,9 +232,7 @@ button:disabled {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    
     color: #ffffff; 
-    
     text-decoration: none;
     font-size: 15px;
     padding: 10px 15px;
@@ -255,4 +286,26 @@ button:disabled {
 }
 .support-widget .support-link a:hover {
     text-decoration: underline;
+}
+
+.card-controls {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 10px;
+}
+
+.card-controls button {
+    font-size: 14px;
+    padding: 8px 12px;
+    width: 100%;
+}
+
+button.edit-btn {
+    background-color: #ffc107;
+    color: #212529;
+}
+button.edit-btn:hover {
+    background-color: #e0a800;
 }
