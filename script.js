@@ -13,8 +13,8 @@ const perkDatabase = [
     { name: 'ผู้ใช้อาวุธระยะไกล', desc: '+10% crit ถ้าแต้มนำ >3', chance: '100%' }
 ];
 
-let allVillagers = [];
-let allPerks = new Set();
+let allVillagers = []; 
+let allPerks = new Set(); 
 
 const fileInput = document.getElementById('fileInput');
 const perkCheckboxContainer = document.getElementById('perkCheckboxContainer');
@@ -25,26 +25,42 @@ const villagerCountSpan = document.getElementById('villagerCount');
 const filterHelpText = document.getElementById('filterHelpText');
 const perkDictionaryDiv = document.getElementById('perkDictionary');
 
+const loadLatestButton = document.getElementById('loadLatestButton');
+
 displayPerkDictionary();
+
+function processLoadedData(villagersArray) {
+    try {
+        allVillagers = villagersArray; 
+        
+        if (!Array.isArray(allVillagers)) {
+            throw new Error('ไฟล์ข้อมูลไม่ได้อยู่ในรูปแบบที่ถูกต้อง (Array)');
+        }
+
+        alert('โหลดไฟล์สำเร็จ! มีชาวบ้าน ' + allVillagers.length + ' คน');
+        
+        perkCheckboxContainer.innerHTML = ''; 
+        filterButton.disabled = false;
+        resetButton.disabled = false;
+        filterHelpText.style.display = 'none';
+
+        populatePerkFilter(); 
+        displayVillagers(allVillagers); 
+    } catch (error) {
+        alert('ไฟล์ JSON ไม่ถูกต้อง หรือมีปัญหา: ' + error.message);
+    }
+}
 
 fileInput.addEventListener('change', (event) => {
     const file = event.target.files[0];
-    if (!file) return; 
+    if (!file) return;
 
     const reader = new FileReader();
     reader.onload = (e) => {
         try {
             const content = e.target.result;
-            allVillagers = JSON.parse(content); 
-            
-            alert('โหลดไฟล์สำเร็จ! มีชาวบ้าน ' + allVillagers.length + ' คน');
-            
-            filterButton.disabled = false;
-            resetButton.disabled = false;
-            filterHelpText.style.display = 'none';
-
-            populatePerkFilter();
-            displayVillagers(allVillagers);
+            const jsonData = JSON.parse(content);
+            processLoadedData(jsonData);
         } catch (error) {
             alert('ไฟล์ JSON ไม่ถูกต้อง: ' + error.message);
         }
@@ -52,27 +68,46 @@ fileInput.addEventListener('change', (event) => {
     reader.readAsText(file);
 });
 
+loadLatestButton.addEventListener('click', () => {
+    alert('กำลังโหลดข้อมูลล่าสุดจากเซิร์ฟเวอร์...');
+    
+    fetch('data.json') 
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('ไม่พบไฟล์ data.json บนเซิร์ฟเวอร์ (HTTP ' + response.status + ')');
+            }
+            return response.json(); 
+        })
+        .then(jsonData => {
+            processLoadedData(jsonData);
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            alert('เกิดข้อผิดพลาด: ' + error.message);
+        });
+});
+
+
 function populatePerkFilter() {
     allPerks.clear();
-    perkCheckboxContainer.innerHTML = '';
+    perkCheckboxContainer.innerHTML = ''; 
 
     allVillagers.forEach(villager => {
-        villager.perks.forEach(perk => {
-            allPerks.add(perk);
-        });
+        if(villager.perks) { 
+            villager.perks.forEach(perk => {
+                allPerks.add(perk);
+            });
+        }
     });
 
     allPerks.forEach(perk => {
         const label = document.createElement('label');
-        
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.value = perk;
         checkbox.className = 'perk-checkbox';
-        
         label.appendChild(checkbox);
-        label.appendChild(document.createTextNode(' ' + perk)); // เพิ่มข้อความ
-        
+        label.appendChild(document.createTextNode(' ' + perk));
         perkCheckboxContainer.appendChild(label);
     });
 }
@@ -87,21 +122,21 @@ filterButton.addEventListener('click', () => {
     }
 
     const filteredVillagers = allVillagers.filter(villager => {
+        if (!villager.perks) return false;
         return selectedPerks.every(perk => villager.perks.includes(perk));
     });
-
+    
     displayVillagers(filteredVillagers);
 });
 
 resetButton.addEventListener('click', () => {
     const checkedBoxes = document.querySelectorAll('.perk-checkbox:checked');
     checkedBoxes.forEach(cb => cb.checked = false);
-    
     displayVillagers(allVillagers);
 });
 
 function displayVillagers(villagers) {
-    villagerListDiv.innerHTML = '';
+    villagerListDiv.innerHTML = ''; 
     villagerCountSpan.textContent = villagers.length;
 
     if (villagers.length === 0) {
@@ -112,26 +147,27 @@ function displayVillagers(villagers) {
     villagers.forEach(villager => {
         const card = document.createElement('div');
         card.className = 'villager-card';
-        const perksList = villager.perks.map(p => `<li>${p}</li>`).join('');
-        const locationsList = villager.locations.map(l => `<li>${l}</li>`).join('');
-        const winsList = villager.winsAgainst.map(w => `<li>${w}</li>`).join('');
-        const losesList = villager.losesTo.map(l => `<li>${l}</li>`).join('');
+
+        const perksList = villager.perks ? villager.perks.map(p => `<li>${p}</li>`).join('') : '<li>ไม่มี</li>';
+        const locationsList = villager.locations ? villager.locations.map(l => `<li>${l}</li>`).join('') : '<li>ไม่มี</li>';
+        const winsList = villager.winsAgainst ? villager.winsAgainst.map(w => `<li>${w}</li>`).join('') : '<li>ไม่มี</li>';
+        const losesList = villager.losesTo ? villager.losesTo.map(l => `<li>${l}</li>`).join('') : '<li>ไม่มี</li>';
 
         card.innerHTML = `
-            <h3>${villager.name}</h3>
-            <p><strong>อาวุธ:</strong> ${villager.weapon}</p>
+            <h3>${villager.name || 'N/A'}</h3>
+            <p><strong>อาวุธ:</strong> ${villager.weapon || 'N/A'}</p>
             
             <strong>Perks:</strong>
-            <ul>${perksList || '<li>ไม่มี</li>'}</ul>
+            <ul>${perksList}</ul>
             
             <strong>สถานที่ที่ไปได้:</strong>
-            <ul>${locationsList || '<li>ไม่มี</li>'}</ul>
+            <ul>${locationsList}</ul>
             
             <strong class="wins">ชนะทาง:</strong>
-            <ul class="wins">${winsList || '<li>ไม่มี</li>'}</ul>
+            <ul class="wins">${winsList}</ul>
             
             <strong class="loses">แพ้ทาง:</strong>
-            <ul class="loses">${losesList || '<li>ไม่มี</li>'}</ul>
+            <ul class="loses">${losesList}</ul>
         `;
         
         villagerListDiv.appendChild(card);
@@ -141,7 +177,6 @@ function displayVillagers(villagers) {
 function displayPerkDictionary() {
     let tableHTML = '<table class="perk-table">';
     tableHTML += '<tr><th>ชื่อ Perk</th><th>คำอธิบาย</th><th>โอกาส</th></tr>';
-
     perkDatabase.forEach(perk => {
         tableHTML += `
             <tr>
@@ -151,9 +186,6 @@ function displayPerkDictionary() {
             </tr>
         `;
     });
-
     tableHTML += '</table>';
     perkDictionaryDiv.innerHTML = tableHTML;
-
 }
-
